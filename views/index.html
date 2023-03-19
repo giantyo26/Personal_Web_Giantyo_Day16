@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <title>My Webpage</title>
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="/public/img/brandwhite.png" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <a class="nav-link btn-bg-primary ms-4 fw-bolder active" aria-current="page" href="/">Home</a>
+          {{if .Flash.FlashStatus}}
+          <a class="nav-link btn-bg-primary ms-4" href="/project">Add Project</a>
+          {{end}}
+        </ul>
+        <div class="ms-auto me-lg-3">
+          <ul class="navbar-nav fw-bold gap-1 text-center">
+            {{if .Flash.FlashStatus}}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Hello, {{.Flash.FlashName}}</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/login">Login</a>
+            </li>
+            {{end}}
+          </ul>
+        </div>
+        <a id="contact-me-btn" class="btn btn-dark px-3 py-1" href="/contact">Contact Me</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Alert -->
+  {{if .Flash.FlashMessage}}
+  {{if .Flash.FlashStatus}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{.Flash.FlashMessage}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{else}}
+  <div></div>
+  {{end}}
+  {{end}}
+  <!-- end Alert -->
+  <!-- end navbar -->
+
+  <!-- container -->
+  <div class="bg-body-secondary full-height d-flex justify-content-evenly align-items-center px-1 py-3">
+    <div id="home"
+      class="container bg-white rounded shadow-lg d-flex justify-content-between align-items-center flex-wrap my-4 px-5 py-4 rounded-4">
+      <!-- left side -->
+      <div class="row">
+        <div class="col-sm-8 mt-5">
+          <div id="left-side-align">
+            <h2 class="fw-bold mt-5 mb-4">Hi, Welcome to my page</h2>
+            <div id="text" class="mb-5">
+              <p id="paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                placeat harum nulla, non consequatur ullam quaeexercitationem nihil
+                libero voluptates iure dolores hic eligendi inventore deserunt fuga
+                quod Lorem ipsum dolor sit amet aliquam temporibus incidunt v
+                oluptatem a odit eum doloremque adipisci aspernatur! Praesentium cum
+                error consequuntur iure eveniet! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Dolorem quos dolor recusandae non ratione quam officia earum commodi cupiditate velit.
+              </p>
+            </div>
+            <div id="contact-download">
+              <a id="contact" class="btn btn-dark rounded-pill px-4 py-1 me-2 text-decoration-none"
+                href="https://wa.me/6285881688511"><span class="fs-6">contact</span></a>
+              <a id="download" class="text-dark text-decoration-none ms-2" href="https://github.com/giantyo26">
+                <span class="text-center fs-6">Download CV</span>
+                <i class="fa fa-download"></i>
+              </a>
+            </div>
+
+            <div
+              class="social-icon mt-5 d-flex align-item-center mt-5 ms-1 gap-4 justify-content-center justify-content-md-start h2">
+              <a class="icons text-dark" target="_blank" href="https://web.facebook.com/giantyo.ardiansyah/"><i
+                  class="fab fa-facebook"></i></a>
+              <a class="icons text-dark" target="_blank" href="https://github.com/giantyo26"><i
+                  class="fa-brands fa-github"></i></a>
+              <a class="icons text-dark" target="_blank" href="https://t.me/giantyo26"><i
+                  class="fa-brands fa-telegram"></i></a>
+              <a class="icons text-dark" target="_blank" href="https://wa.me/6285881688511"><i
+                  class="fa-brands fa-whatsapp"></i></a>
+            </div>
+
+          </div>
+        </div>
+        <!-- card -->
+        <div class="col-sm-4 mt-5 mb-3">
+          <div class="card rounded-4 shadow-lg">
+            <img src="/public/img/profile-pic.jpg" class="img-fluid d-flex justify-content-center rounded-top-4"
+              alt="my photo">
+            <div class="card-body text-center">
+              <h5 class="card-title">Giantyo Ardiansyah</h5>
+              <p class="card-text">Fullstack Developer</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- end card -->
+      </div>
+
+      <!-- end left side -->
+    </div>
+  </div>
+  <!-- end container -->
+
+  <!-- project-list container -->
+  <div id="project-list"
+    class="shadow d-flex justify-content-center align-items-center flex-column bg-project mt-5 px-5">
+    <h2 class="text-center fw-bold mb-5 mt-3">My Projects</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {{range $index, $project := .Projects}}
+      <div class="col mb-3">
+        <a href="/project-detail/{{$project.Id}}" style="color: inherit; text-decoration: none;">
+          <div class="card p-2 shadow bg-white mb-4">
+            <img src="/upload/{{$project.Image}}" class="card-img-top rounded-4 px-2 py-1 h-100"  alt="image">
+            <div class="card-body">
+              <h5 class="card-title">{{$project.ProjectName}}</h5>
+              <p class="project-duration opacity-75">Duration: {{$project.Duration}}</p>
+              <p class="project-description card-text">{{$project.Description}}</p>
+              <div class="technologies-icon h4 gap-2">
+                {{range $index, $technology := $project.Technologies}}
+                <i class="devicon-{{$technology}}-plain"></i>
+                {{end}}
+              </div>
+              <div class="mt-2">
+                {{if $.Flash.FlashStatus}}
+                <ul class="list-unstyled d-flex gap-1 mb-1">
+                  <li class="w-50">
+                    <a href="/project-edit/{{$project.Id}}" class="w-100 p-0 btn btn-dark text-light">edit</a>
+                  </li>
+                  <li class="w-50">
+                    <a href="/delete-project/{{$project.Id}}" class="w-100 p-0 btn btn-dark text-light">delete</a>
+                  </li>
+                </ul>
+                {{end}}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{end}}
+    </div>
+  </div>
+  <!-- end project-list container -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</html>

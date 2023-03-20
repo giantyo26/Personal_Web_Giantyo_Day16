@@ -57,6 +57,7 @@ func main() {
 	e.Static("public", "public")
 	e.Static("upload", "upload")
 
+	// Iniatilized session
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte("session"))))
 
 	t := &Template{
@@ -88,7 +89,9 @@ func main() {
 	e.Logger.Fatal(e.Start("localhost:5000"))
 }
 
+// Render login page
 func loginPage(c echo.Context) error {
+	// Get initialized session or make a new session
 	sess, _ := session.Get("session", c)
 
 	flash := map[string]interface{}{
@@ -104,6 +107,7 @@ func loginPage(c echo.Context) error {
 	return c.Render(http.StatusOK, "login.html", flash)
 }
 
+// login handler
 func toLogin(c echo.Context) error {
 	err := c.Request().ParseForm()
 	if err != nil {
@@ -126,6 +130,7 @@ func toLogin(c echo.Context) error {
 		return redirectWithMessage(c, "Wrong password!", false, "/login")
 	}
 
+	// Sessions Values
 	sess, _ := session.Get("session", c)
 	sess.Options.MaxAge = 7200
 	sess.Values["message"] = "Login Success"
@@ -134,15 +139,18 @@ func toLogin(c echo.Context) error {
 	sess.Values["id"] = user.Id
 	sess.Values["isLogin"] = true
 
+	// Save updated session to client
 	sess.Save(c.Request(), c.Response())
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
 
+// Render register page
 func registerPage(c echo.Context) error {
 	return c.Render(http.StatusOK, "register.html", nil)
 }
 
+// Register handler
 func toRegister(c echo.Context) error {
 	err := c.Request().ParseForm()
 	if err != nil {
@@ -260,7 +268,7 @@ func projectDetailPage(c echo.Context) error {
 
 	projectDetail.Duration = countDuration(projectDetail.StartDate, projectDetail.EndDate)
 
-	// data yang akan digunakan/dikirimkan ke html menggunakan map interface
+	// Data in form of map interface that will be used in using html/template
 	projectDetailMap := map[string]interface{}{
 		"Project": projectDetail,
 		"Flash":   flash,
